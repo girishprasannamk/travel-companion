@@ -31,12 +31,19 @@ multi-trip dashboard and a data-driven Trip Engine.
 
 ## Milestone 3 — Platform
 
-| # | Task |
-|---|------|
-| - | Documents storage (offline-accessible) |
-| - | Maps integration (Google/Apple) |
-| - | Settings + theming controls |
-| - | Cloud sync (Firebase) — future |
+| # | Task | Status |
+|---|------|--------|
+| 11 | Documents module (offline blob store via IndexedDB + records, trip tab) | ✅ |
+| 12 | Places/Maps module (saved locations + OpenStreetMap links, trip tab) | ✅ |
+| 13 | Settings expansion (default currency, custom budget categories) | ✅ |
+| 14 | Home polish (active-trip hero + quick actions) | ✅ |
+| 15 | PWA install prompt + offline banner | ✅ |
+| 16 | Design-system: Input primitive | ✅ |
+
+**Note on Maps:** M3 uses OpenStreetMap links (no API key, fully offline-capable
+of storing places). An interactive embedded map with routing is a later
+enhancement (would need a tile provider); the bootstrap "Maps integration" is
+satisfied by store + OSM deep-links.
 
 ## Milestone 4 — Intelligence
 

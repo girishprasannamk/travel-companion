@@ -49,15 +49,22 @@ features/
   budget/            # ExpenseForm, BudgetAnalyticsView (M2)
   tickets/           # TicketForm, TicketComparison (M2)
   journal/           # JournalForm (M2)
+  documents/         # DocumentManager (M3)
+  places/            # PlaceManager (M3)
   transport/ restaurants/ weather/ settings/ ai/  # later
 data/
   trips/<slug>/      # per-trip JSON (trip.json, hotel.json, ...)
   seed.ts            # first-run demo trips
 types/               # domain models + helpers (zod schemas)
-store/               # zustand stores (trips, expenses, tickets, journal)
+store/               # zustand stores (trips, expenses, tickets, journal, documents, places, settings)
 services/            # pure data-access / business logic (trips, budget)
 hooks/               # shared React hooks (useHydrated)
-lib/                 # utilities (cn, format)
+lib/                 # utilities (cn, format, blobStore for IndexedDB)
+components/
+  ui/                # design-system primitives (Button, Card, badge, separator, Input)
+  layout/            # AppShell, BottomNav
+  common/            # shared presentational components (PageHeader)
+  pwa/               # InstallPrompt, OfflineBanner
 docs/                # project documentation (kept in sync with code)
 scripts/             # generators / tooling
 ```
@@ -79,9 +86,17 @@ bookingId, qrCode, pdf, refundPolicy, validity). The Tickets module groups by
 `JournalEntry` (id, tripId, date, notes, rating, favouriteMemory, weather,
 location, photoUrls, videoUrls) — one per day.
 
+`TripDocument` (id, tripId, kind, title, blobKey, mimeType, fileName,
+expiryDate, notes). The binary file is stored in IndexedDB keyed by `blobKey`;
+the record lives in the zustand store. Kinds: passport, visa, ticket,
+insurance, booking, voucher, license, other.
+
+`Place` (id, tripId, name, category, address, lat, lng, notes) — saved
+locations; opened via OpenStreetMap links (no API key needed).
+
 Each new model lives as JSON under `data/trips/<slug>/` for the trip's own
-static content; user-entered data (expenses, tickets, journal) is captured in
-the persisted zustand stores.
+static content; user-entered data (expenses, tickets, journal, documents,
+places) is captured in the persisted zustand stores.
 
 ## Trip Engine
 

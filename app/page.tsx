@@ -1,57 +1,75 @@
+"use client";
+
+import { useState } from "react";
+import { Plane, Plus } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { TripCard } from "@/components/TripCard";
+import { AddTripForm } from "@/components/AddTripForm";
+import { useTrips } from "@/store/useTrips";
+import { sortTrips } from "@/services/trips";
+import { useHydrated } from "@/hooks/useHydrated";
+import { seedTrips } from "@/data/seed";
+
 export default function Home() {
+  const hydrated = useHydrated();
+  const trips = useTrips((s) => s.trips);
+  const removeTrip = useTrips((s) => s.removeTrip);
+  const [adding, setAdding] = useState(false);
+
+  // Pre-hydration: render seed so server and client markup match. After mount,
+  // switch to the persisted store (which may differ from seed on the client).
+  const display = hydrated ? trips : seedTrips;
+  const sorted = sortTrips(display);
+
   return (
     <main className="min-h-screen bg-slate-950 text-white">
-      <div className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-8">
-
-        <p className="text-sm uppercase tracking-[0.4em] text-emerald-400">
-          Travel Companion
-        </p>
-
-        <h1 className="mt-6 text-6xl font-bold leading-tight">
-          Plan.
-          <br />
-          Travel.
-          <br />
-          Remember.
-        </h1>
-
-        <p className="mt-8 max-w-2xl text-xl text-slate-400">
-          Your personal travel assistant for planning, navigating,
-          budgeting, documenting and reliving every trip.
-        </p>
-
-        <div className="mt-16 rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
-
-          <div className="flex items-center justify-between">
-
+      <div className="mx-auto flex min-h-screen max-w-3xl flex-col px-5 py-10 sm:px-8">
+        <header className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="flex size-10 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-400">
+              <Plane className="size-5" />
+            </span>
             <div>
-
-              <p className="text-sm uppercase tracking-widest text-slate-400">
-                Current Trip
+              <p className="text-xs uppercase tracking-[0.3em] text-emerald-400">
+                Travel Companion
               </p>
-
-              <h2 className="mt-2 text-3xl font-bold">
-                🇸🇬 Singapore 2026
-              </h2>
-
-              <p className="mt-3 text-slate-400">
-                12 – 19 August 2026
-              </p>
-
-              <p className="mt-2 text-slate-500">
-                Hotel Mi Rochor
-              </p>
-
+              <h1 className="font-heading text-xl font-semibold">
+                Your Trips
+              </h1>
             </div>
-
-            <button className="rounded-xl bg-emerald-500 px-6 py-3 font-semibold text-slate-900 transition hover:bg-emerald-400">
-              Open Trip →
-            </button>
-
           </div>
+          <Button size="sm" onClick={() => setAdding((v) => !v)}>
+            <Plus /> {adding ? "Close" : "New"}
+          </Button>
+        </header>
 
-        </div>
+        {adding && (
+          <div className="mt-6">
+            <AddTripForm onAdded={() => setAdding(false)} />
+          </div>
+        )}
 
+        <section className="mt-8 space-y-4">
+          {sorted.length === 0 ? (
+            <div className="rounded-3xl border border-slate-800 bg-slate-900 p-10 text-center text-slate-400">
+              No trips yet. Tap <span className="text-emerald-400">New</span> to
+              plan your first adventure.
+            </div>
+          ) : (
+            sorted.map((trip) => (
+              <TripCard
+                key={trip.id}
+                trip={trip}
+                onDelete={removeTrip}
+              />
+            ))
+          )}
+        </section>
+
+        <footer className="mt-auto pt-10 text-center text-xs text-slate-600">
+          {trips.length} trip{trips.length === 1 ? "" : "s"} · stored on this
+          device · works offline
+        </footer>
       </div>
     </main>
   );

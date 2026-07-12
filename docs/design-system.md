@@ -5,6 +5,13 @@ Inspired by:
 - Apple Wallet
 - Apple Maps
 - Apple Calendar
-- Notion
 - Linear
+- Notion
+
+Design Goals
+
+- Minimal
+- Premium
+- Fast
+- Accessible
 

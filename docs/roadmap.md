@@ -1,12 +1,24 @@
 # Product Roadmap
 
-## Foundation
-- [ ] Project setup
-- [ ] PWA
-- [ ] Dashboard
+## Milestone 1
+- Foundation
+- Dashboard
+- Design System
+- PWA
 
-## Singapore
-- [ ] Itinerary
-- [ ] Tickets
-- [ ] Budget
+## Milestone 2
+- Singapore Trip
+- Itinerary
+- Hotel
+- Flights
+
+## Milestone 3
+- Tickets
+- Budget
+- Documents
+
+## Milestone 4
+- Journal
+- AI
+- Multi Trip
 

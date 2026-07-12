@@ -1,12 +1,12 @@
 # Requirements
 
-Travel Companion should:
+The application should:
 
 - Work offline
-- Be installable on iPhone
+- Install on iPhone
 - Support multiple trips
-- Track expenses
 - Store tickets
-- Show itineraries
-- Support AI features in future
+- Store documents
+- Track expenses
+- Support future AI features
 

@@ -1,0 +1,16 @@
+{
+  "id": "seed-goa-2025",
+  "slug": "goa-2025",
+  "name": "Goa Getaway",
+  "destination": "Goa, India",
+  "flag": "🇮🇳",
+  "startDate": "2025-12-22",
+  "endDate": "2025-12-28",
+  "accent": "#f59e0b",
+  "hotelName": "Praia de Goa",
+  "travellers": "2 Adults",
+  "status": "past",
+  "notes": "Year-end break.",
+  "createdAt": "2025-11-01T00:00:00.000Z",
+  "updatedAt": "2025-11-01T00:00:00.000Z"
+}

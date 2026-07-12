@@ -1,0 +1,16 @@
+{
+  "id": "seed-singapore-2026",
+  "slug": "singapore-2026",
+  "name": "Singapore 2026",
+  "destination": "Singapore",
+  "flag": "🇸🇬",
+  "startDate": "2026-08-12",
+  "endDate": "2026-08-19",
+  "accent": "#10b981",
+  "hotelName": "Hotel Mi Rochor",
+  "travellers": "2 Adults, 1 Child",
+  "status": "upcoming",
+  "notes": "First big trip with the family. Return to hotel every night.",
+  "createdAt": "2026-06-01T00:00:00.000Z",
+  "updatedAt": "2026-06-01T00:00:00.000Z"
+}

@@ -22,55 +22,47 @@ export default function Home() {
   const sorted = sortTrips(display);
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
-      <div className="mx-auto flex min-h-screen max-w-3xl flex-col px-5 py-10 sm:px-8">
-        <header className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="flex size-10 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-400">
-              <Plane className="size-5" />
-            </span>
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-emerald-400">
-                Travel Companion
-              </p>
-              <h1 className="font-heading text-xl font-semibold">
-                Your Trips
-              </h1>
-            </div>
+    <div className="mx-auto w-full max-w-3xl px-5 py-10 sm:px-8">
+      <header className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <span className="flex size-10 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-400">
+            <Plane className="size-5" />
+          </span>
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-emerald-400">
+              Travel Companion
+            </p>
+            <h1 className="font-heading text-xl font-semibold">Your Trips</h1>
           </div>
-          <Button size="sm" onClick={() => setAdding((v) => !v)}>
-            <Plus /> {adding ? "Close" : "New"}
-          </Button>
-        </header>
+        </div>
+        <Button size="sm" onClick={() => setAdding((v) => !v)}>
+          <Plus /> {adding ? "Close" : "New"}
+        </Button>
+      </header>
 
-        {adding && (
-          <div className="mt-6">
-            <AddTripForm onAdded={() => setAdding(false)} />
+      {adding && (
+        <div className="mt-6">
+          <AddTripForm onAdded={() => setAdding(false)} />
+        </div>
+      )}
+
+      <section className="mt-8 space-y-4">
+        {sorted.length === 0 ? (
+          <div className="rounded-3xl border border-slate-800 bg-slate-900 p-10 text-center text-slate-400">
+            No trips yet. Tap <span className="text-emerald-400">New</span> to
+            plan your first adventure.
           </div>
+        ) : (
+          sorted.map((trip) => (
+            <TripCard key={trip.id} trip={trip} onDelete={removeTrip} />
+          ))
         )}
+      </section>
 
-        <section className="mt-8 space-y-4">
-          {sorted.length === 0 ? (
-            <div className="rounded-3xl border border-slate-800 bg-slate-900 p-10 text-center text-slate-400">
-              No trips yet. Tap <span className="text-emerald-400">New</span> to
-              plan your first adventure.
-            </div>
-          ) : (
-            sorted.map((trip) => (
-              <TripCard
-                key={trip.id}
-                trip={trip}
-                onDelete={removeTrip}
-              />
-            ))
-          )}
-        </section>
-
-        <footer className="mt-auto pt-10 text-center text-xs text-slate-600">
-          {trips.length} trip{trips.length === 1 ? "" : "s"} · stored on this
-          device · works offline
-        </footer>
-      </div>
-    </main>
+      <footer className="mt-10 text-center text-xs text-slate-600">
+        {trips.length} trip{trips.length === 1 ? "" : "s"} · stored on this
+        device · works offline
+      </footer>
+    </div>
   );
 }

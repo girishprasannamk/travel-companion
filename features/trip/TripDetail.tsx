@@ -17,15 +17,19 @@ import { TicketComparison } from "@/features/tickets/TicketComparison";
 import { useTickets } from "@/store/useTickets";
 import { JournalForm } from "@/features/journal/JournalForm";
 import { useJournal } from "@/store/useJournal";
+import { DocumentForm, DocumentList } from "@/features/documents/DocumentManager";
+import { PlaceManager } from "@/features/places/PlaceManager";
 import { formatInr } from "@/lib/format";
 
-type Tab = "overview" | "budget" | "tickets" | "journal";
+type Tab = "overview" | "budget" | "tickets" | "journal" | "documents" | "places";
 
 const TABS: { id: Tab; label: string }[] = [
   { id: "overview", label: "Overview" },
   { id: "budget", label: "Budget" },
   { id: "tickets", label: "Tickets" },
   { id: "journal", label: "Journal" },
+  { id: "documents", label: "Docs" },
+  { id: "places", label: "Places" },
 ];
 
 export function TripDetail({ tripId }: { tripId: string }) {
@@ -159,6 +163,19 @@ export function TripDetail({ tripId }: { tripId: string }) {
                   </div>
                 ))}
             </div>
+          </div>
+        )}
+
+        {tab === "documents" && (
+          <div className="space-y-6">
+            <DocumentForm tripId={trip.id} />
+            <DocumentList tripId={trip.id} />
+          </div>
+        )}
+
+        {tab === "places" && (
+          <div className="space-y-6">
+            <PlaceManager tripId={trip.id} />
           </div>
         )}
       </div>

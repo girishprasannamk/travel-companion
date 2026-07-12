@@ -19,15 +19,15 @@ multi-trip dashboard and a data-driven Trip Engine.
 | 6 | Trip Engine (types, store, services, hooks) | ✅ |
 | 7 | Load Singapore Trip (seed JSON, data-driven) | ✅ |
 
-## Milestone 2 — Trip Internals
+## Milestone 2 — Trip Internals ✅ done
 
-| # | Task |
-|---|------|
-| 8 | Budget Module (expense categories, INR conversion, analytics) |
-| 9 | Tickets Module (price comparison, cheapest-combo recommendation) |
-| 10 | Journal Module (photos, notes, rating, weather) |
-| - | Trip detail page (itinerary, hotel, transport, flights) |
-| - | Bottom navigation shell (Home, Trips, Timeline, Budget, Journal, Settings) |
+| # | Task | Status |
+|---|------|--------|
+| 8 | Budget Module (expense entry, INR conversion, category/daily totals, analytics charts) | ✅ |
+| 9 | Tickets Module (vendor quotes, cheapest-combo recommendation) | ✅ |
+| 10 | Journal Module (per-day notes, rating, favourite memory, weather) | ✅ |
+| - | Trip detail page (Overview / Budget / Tickets / Journal tabs) | ✅ |
+| - | Bottom-navigation shell (Home, Trips, Timeline, Budget, Journal, Settings) | ✅ |
 
 ## Milestone 3 — Platform
 

@@ -4,7 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ServiceWorkerRegistrar } from "@/components/service-worker";
 import { AppShell } from "@/components/layout/AppShell";
-
+import { InstallPrompt } from "@/components/pwa/InstallPrompt";
+import { OfflineBanner } from "@/components/pwa/OfflineBanner";
 const geistSans = Geist({
   variable: "--font-sans",
   subsets: ["latin"],
@@ -55,6 +56,8 @@ export default function RootLayout({
         >
           <AppShell>{children}</AppShell>
         </ThemeProvider>
+        <InstallPrompt />
+        <OfflineBanner />
         <ServiceWorkerRegistrar />
       </body>
     </html>
